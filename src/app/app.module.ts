@@ -5,11 +5,16 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import 'rxjs/add/operator/toPromise';
 
 // Pages.
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
+
+// Providers.
+import {DataProvider} from '../providers/data/data.provider';
+import {FavoritesProvider} from '../providers/favorites/favorites.provider';
 
 // Firebase
 import {AngularFireModule} from 'angularfire2';
@@ -46,7 +51,9 @@ import {firebaseConfig} from './firebase.config';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider,
+    FavoritesProvider
   ]
 })
 export class AppModule {
