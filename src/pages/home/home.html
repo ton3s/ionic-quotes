@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar>
     <ion-title>
       Quotes
     </ion-title>
@@ -8,23 +8,31 @@
 
 <ion-content padding>
 
-  <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 90%">
-      <ion-card class="quote-card">
-        <ion-card-content>
-          <ion-item class="quote" text-wrap>
-            "Real love stories never have endings"
-          </ion-item>
-          <ion-item>
-            <p item-end>Richard Bach</p>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-    </ion-row>
-  </ion-grid>
+  <ion-fab top right edge>
+    <button ion-fab mini color="dark"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab><ion-icon name="md-share"></ion-icon></button>
+      <button ion-fab><ion-icon name="heart"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
-
-
-
+  <ion-slides class="quote-container">
+    <ion-slide>
+      <ion-grid>
+        <ion-row justify-content-center align-items-center>
+          <ion-card class="quote-card">
+            <ion-card-content>
+              <ion-item class="quote-description" text-wrap>
+                "Real love stories never have endings"
+              </ion-item>
+              <ion-item>
+                <p item-end>Richard Bach</p>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

@@ -1,7 +1,12 @@
 page-home {
 
-  .quote {
-    padding-bottom: 10px;
+  .quote-container {
+    height: 90%;
+  }
+
+  .quote-description {
+    font-size: 18px;
+    padding-bottom: 15px;
   }
 
   .quote-card {
