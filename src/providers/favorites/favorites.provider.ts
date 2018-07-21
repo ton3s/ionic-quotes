@@ -29,20 +29,27 @@ export class FavoritesProvider {
     });
   }
 
-  saveFavorite(quote: IQuote): void {
-    // Check if it already exists in the users favorites
-    if (!this.favorites.find(favorite => favorite.id === quote.id)) {
-      this.favorites.push(quote);
-      this.storage.set('favorites', this.favorites);
-    }
+  saveFavorite(quote: IQuote) {
+    return new Promise((resolve, reject) => {
+      // Check if it already exists in the users favorites
+      if (!this.favorites.find(favorite => favorite.id === quote.id)) {
+        this.favorites.push(quote);
+        this.storage.set('favorites', this.favorites).then(resolve).catch(reject);
+      }
+      resolve();
+    })
   }
 
-  removeFavorite(quote: IQuote): void {
-    let index = this.favorites.map(favorite => favorite.id).indexOf(quote.id);
-    if (index > -1) {
-      this.favorites.splice(index, 1);
-      this.storage.set('favorites', this.favorites);
-    }
+  removeFavorite(quote: IQuote) {
+    return new Promise((resolve, reject) => {
+      let index = this.favorites.map(favorite => favorite.id).indexOf(quote.id);
+      if (index > -1) {
+        this.favorites.splice(index, 1);
+        this.storage.set('favorites', this.favorites).then(resolve).catch(reject);
+      }
+      resolve();
+    })
+
   }
 
   isFavorite(quote: IQuote): boolean {

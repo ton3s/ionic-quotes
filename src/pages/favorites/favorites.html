@@ -6,8 +6,8 @@
 
 <ion-content padding>
   <ion-list *ngIf="favorites.length > 0">
-    <ion-card *ngFor="let favorite of favorites">
-      <ion-card-content>
+    <ion-card *ngFor="let favorite of favorites; let i = index;">
+      <ion-card-content (click)="toggleOptions(favorite)">
         <ion-item text-wrap>
           "{{ favorite.text }}"
         </ion-item>
@@ -15,8 +15,27 @@
           <p item-end>{{ favorite.author }}</p>
         </ion-item>
       </ion-card-content>
+
+      <ion-row *ngIf="isSharing[favorite.id]" class="animated fadeInUp">
+        <ion-col class="buttons-icon">
+          <button ion-button clear icon-only full color="dark" (click)="promptRemoveFavorite(favorite)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col class="buttons-icon">
+          <button ion-button clear icon-only full color="dark" (click)="share(i)">
+            <ion-icon name="md-share"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </ion-list>
+
+  <web-social-share *ngIf="favorites.length > 0"
+                    [show]="socialProvider.isSharing"
+                    [share]="socialProvider.share(favorites[currentIndex])"
+                    (closed)="socialProvider.setShareStatus(false)">
+  </web-social-share>
 
   <ion-card *ngIf="favorites.length === 0" class="no-favorites">
     <ion-icon class="favorite-icon" name="heart"></ion-icon>
