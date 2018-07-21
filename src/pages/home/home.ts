@@ -3,6 +3,7 @@ import {NavController, Slides} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data.provider";
 import {IQuote} from "../../providers/data/data.interface";
 import {SocialProvider} from "../../providers/social/social.provider";
+import {FavoritesProvider} from "../../providers/favorites/favorites.provider";
 
 @Component({
   selector: 'page-home',
@@ -16,7 +17,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               public dataProvider: DataProvider,
-              public socialProvider: SocialProvider) {
+              public socialProvider: SocialProvider,
+              public favoritesProvider: FavoritesProvider) {
   }
 
   ionViewDidLoad() {
@@ -25,6 +27,17 @@ export class HomePage {
 
   slideChanged() {
     this.currentIndex = this.slides.getActiveIndex();
+  }
+
+  isFavorite(quote: IQuote) {
+    return this.favoritesProvider.isFavorite(quote);
+  }
+
+  toggleFavorite(quote: IQuote, fab) {
+    fab.close();
+    this.isFavorite(quote) ?
+      this.favoritesProvider.removeFavorite(quote) :
+      this.favoritesProvider.saveFavorite(quote);
   }
 
 }

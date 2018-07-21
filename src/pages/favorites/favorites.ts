@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FavoritesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {IQuote} from "../../providers/data/data.interface";
+import {FavoritesProvider} from "../../providers/favorites/favorites.provider";
 
 @IonicPage()
 @Component({
@@ -15,11 +10,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FavoritesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  favorites: IQuote[] = [];
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public favoritesProvider: FavoritesProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
+    this.favoritesProvider.getFavorites().then(favorites => this.favorites = favorites);
   }
 
 }

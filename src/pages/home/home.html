@@ -9,10 +9,21 @@
 <ion-content padding>
 
   <ion-fab top right edge #fab>
-    <button ion-fab mini color="dark"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab mini color="dark">
+      <ion-icon name="add"></ion-icon>
+    </button>
     <ion-fab-list>
-      <button ion-fab (click)="socialProvider.setShareStatus(true, fab)"><ion-icon name="md-share"></ion-icon></button>
-      <button ion-fab><ion-icon name="heart"></ion-icon></button>
+      <button ion-fab (click)="socialProvider.setShareStatus(true, fab)">
+        <ion-icon name="md-share"></ion-icon>
+      </button>
+      <button ion-fab *ngIf="quotes && !isFavorite(quotes[currentIndex])"
+              (click)="toggleFavorite(quotes[currentIndex], fab)">
+        <ion-icon name="heart-outline"></ion-icon>
+      </button>
+      <button ion-fab *ngIf="quotes && isFavorite(quotes[currentIndex])"
+              (click)="toggleFavorite(quotes[currentIndex], fab)">
+        <ion-icon name="heart"></ion-icon>
+      </button>
     </ion-fab-list>
   </ion-fab>
 

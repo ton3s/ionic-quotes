@@ -3,6 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
+import {IonicStorageModule} from '@ionic/storage';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import 'rxjs/add/operator/toPromise';
@@ -39,6 +40,7 @@ import { SocialProvider } from '../providers/social/social.provider';
       preloadModules: true,
       mode: 'ios'
     }),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
