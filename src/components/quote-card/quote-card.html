@@ -1,0 +1,23 @@
+<ion-card>
+  <ion-card-content (click)="onClick.emit()">
+    <ion-item text-wrap>
+      "{{ quote.text }}"
+    </ion-item>
+    <ion-item>
+      <p item-end>{{ quote.author }}</p>
+    </ion-item>
+  </ion-card-content>
+
+  <ion-row *ngIf="isSharing" class="animated fadeInUp">
+    <ion-col class="buttons-icon">
+      <button ion-button clear icon-only full color="dark" (click)="onDelete.emit()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col class="buttons-icon">
+      <button ion-button clear icon-only full color="dark" (click)="onShare.emit()">
+        <ion-icon name="md-share"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
