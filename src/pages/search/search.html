@@ -23,10 +23,16 @@
     <ion-icon class="search-icon" name="quote"></ion-icon>
     <div>No Results Found</div>
   </ion-card>
+
 </ion-content>
 
-<web-social-share *ngIf="quotes.length > 0"
-                  [show]="socialProvider.isSharing"
-                  [share]="socialProvider.share(quotes[currentIndex])"
-                  (closed)="socialProvider.setShareStatus(false)">
-</web-social-share>
+<ion-footer>
+  <ion-toolbar *ngIf="socialProvider.isSharing" class="animated fadeInUp">
+    <web-social-share *ngIf="quotes.length > 0"
+                      [show]="socialProvider.isSharing"
+                      [share]="socialProvider.share(quotes[currentIndex])"
+                      (closed)="socialProvider.setShareStatus(false)">
+    </web-social-share>
+  </ion-toolbar>
+</ion-footer>
+

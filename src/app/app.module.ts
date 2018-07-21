@@ -17,6 +17,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 // Providers.
 import {DataProvider} from '../providers/data/data.provider';
 import {FavoritesProvider} from '../providers/favorites/favorites.provider';
+import {SocialProvider} from '../providers/social/social.provider';
 
 // Firebase
 import {AngularFireModule} from 'angularfire2';
@@ -25,7 +26,6 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 
 // Firebase Configuration
 import {firebaseConfig} from './firebase.config';
-import { SocialProvider } from '../providers/social/social.provider';
 
 @NgModule({
   declarations: [

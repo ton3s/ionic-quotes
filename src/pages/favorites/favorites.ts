@@ -26,8 +26,12 @@ export class FavoritesPage {
     this.loadFavorites();
   }
 
+  ionViewDidEnter() {
+    this.isSharing = [];
+    this.socialProvider.setShareStatus(false);
+  }
+
   toggleOptions(favorite: IQuote) {
-    console.log("toggleOptions");
     this.isSharing[favorite.id] = !this.isSharing[favorite.id] || false;
   }
 
@@ -65,7 +69,7 @@ export class FavoritesPage {
 
   share(index) {
     this.currentIndex = index;
-    this.socialProvider.setShareStatus(true);
+    this.socialProvider.isSharing = !this.socialProvider.isSharing;
   }
 
 }

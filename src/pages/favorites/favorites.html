@@ -23,9 +23,15 @@
 
 </ion-content>
 
-<web-social-share
-  *ngIf="favorites.length > 0"
-  [show]="socialProvider.isSharing"
-  [share]="socialProvider.share(favorites[currentIndex])"
-  (closed)="socialProvider.setShareStatus(false)">
-</web-social-share>
+
+<ion-footer>
+  <ion-toolbar *ngIf="socialProvider.isSharing" class="animated fadeInUp">
+    <web-social-share
+      *ngIf="favorites.length > 0"
+      [show]="socialProvider.isSharing"
+      [share]="socialProvider.share(favorites[currentIndex])"
+      (closed)="socialProvider.setShareStatus(false)">
+    </web-social-share>
+  </ion-toolbar>
+</ion-footer>
+

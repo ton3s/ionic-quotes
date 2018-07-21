@@ -30,6 +30,11 @@ export class SearchPage {
     this.dataProvider.getQuotes().then(quotes => this.quotes = quotes);
   }
 
+  ionViewDidEnter() {
+    this.isSharing = [];
+    this.socialProvider.setShareStatus(false);
+  }
+
   setFilteredItems() {
     this.dataProvider.filterQuotes(this.searchTerm)
       .then((quotes: IQuote[]) => {
@@ -58,7 +63,7 @@ export class SearchPage {
 
   share(index) {
     this.currentIndex = index;
-    this.socialProvider.setShareStatus(true);
+    this.socialProvider.isSharing = !this.socialProvider.isSharing;
   }
 
   presentToast(message: string) {
