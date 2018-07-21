@@ -12,15 +12,18 @@ export class DataProvider {
 
   getQuotes(): Promise<IQuote[]> {
     return this.http.get(this.quotesUrl, {responseType: 'text'})
-      .map(res => res.split('\n').map(line => {
-        let arr = line.split(";;");
-        return {
-          id: parseInt(arr[0]),
-          quote: arr[1],
-          category: arr[2],
-          author: arr[3]
-        };
-      }))
+      .map(res => res.split('\n')
+        .filter(line => line.length > 0)
+        .map(line => {
+          let arr = line.split(";;");
+          return {
+            id: parseInt(arr[0]),
+            text: arr[1],
+            category: arr[2],
+            author: arr[3]
+          };
+        }))
       .toPromise();
   }
+
 }

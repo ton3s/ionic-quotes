@@ -1,7 +1,7 @@
 
 export interface IQuote {
   id: number;
-  quote: string;
+  text: string;
   category: string;
   author: string;
 }

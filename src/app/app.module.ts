@@ -1,11 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import 'rxjs/add/operator/toPromise';
+import 'web-social-share';
 
 // Pages.
 import {MyApp} from './app.component';
@@ -23,6 +24,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 
 // Firebase Configuration
 import {firebaseConfig} from './firebase.config';
+import { SocialProvider } from '../providers/social/social.provider';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import {firebaseConfig} from './firebase.config';
     AngularFireAuthModule,
     HttpClientModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -53,7 +56,8 @@ import {firebaseConfig} from './firebase.config';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    FavoritesProvider
+    FavoritesProvider,
+    SocialProvider
   ]
 })
 export class AppModule {
