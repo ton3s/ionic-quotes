@@ -27,6 +27,7 @@ export class FavoritesPage {
   }
 
   toggleOptions(favorite: IQuote) {
+    console.log("toggleOptions");
     this.isSharing[favorite.id] = !this.isSharing[favorite.id] || false;
   }
 
