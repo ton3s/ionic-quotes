@@ -66,4 +66,5 @@ export class FavoritesPage {
     this.currentIndex = index;
     this.socialProvider.setShareStatus(true);
   }
+
 }

@@ -1,13 +1,32 @@
-
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Search</ion-title>
+    <ion-title>Search Quotes</ion-title>
   </ion-navbar>
-
+  <ion-searchbar class="search-bar" [(ngModel)]="searchTerm"
+                 (ionCancel)="setFilteredItems()"
+                 (ionInput)="setFilteredItems()"></ion-searchbar>
 </ion-header>
 
-
 <ion-content padding>
+  <ion-list *ngIf="quotes.length > 0">
+    <quote-card *ngFor="let quote of quotes; let i = index;"
+                [quote]="quote"
+                [showOptions]="isSharing[quote.id]"
+                [isFavorite]="favoritesProvider.isFavorite(quote)"
+                (onClick)="toggleOptions(quote)"
+                (onFavorite)="toggleFavorite(quote)"
+                (onShare)="share(i)">
+    </quote-card>
+  </ion-list>
 
+  <web-social-share *ngIf="quotes.length > 0"
+                    [show]="socialProvider.isSharing"
+                    [share]="socialProvider.share(quotes[currentIndex])"
+                    (closed)="socialProvider.setShareStatus(false)">
+  </web-social-share>
+
+  <ion-card *ngIf="quotes.length === 0" class="no-quotes">
+    <ion-icon class="search-icon" name="quote"></ion-icon>
+    <div>No Results Found</div>
+  </ion-card>
 </ion-content>

@@ -8,10 +8,11 @@
     </ion-item>
   </ion-card-content>
 
-  <ion-row *ngIf="isSharing" class="animated fadeInUp">
+  <ion-row *ngIf="showOptions" class="animated fadeInUp">
     <ion-col class="buttons-icon">
-      <button ion-button clear icon-only full color="dark" (click)="onDelete.emit()">
-        <ion-icon name="trash"></ion-icon>
+      <button ion-button clear icon-only full color="dark" (click)="onFavorite.emit()">
+        <ion-icon *ngIf="isFavorite" name="heart"></ion-icon>
+        <ion-icon *ngIf="!isFavorite" name="heart-outline"></ion-icon>
       </button>
     </ion-col>
     <ion-col class="buttons-icon">

@@ -9,8 +9,9 @@
     <quote-card *ngFor="let favorite of favorites; let i = index;"
                 [quote]="favorite"
                 [isSharing]="isSharing[favorite.id]"
+                [isFavorite]="favoritesProvider.isFavorite(favorite)"
                 (onClick)="toggleOptions(favorite)"
-                (onDelete)="promptRemoveFavorite(favorite)"
+                (onFavorite)="promptRemoveFavorite(favorite)"
                 (onShare)="share(i)">
     </quote-card>
   </ion-list>

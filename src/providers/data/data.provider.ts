@@ -26,4 +26,19 @@ export class DataProvider {
       .toPromise();
   }
 
+  filterQuotes(searchTerm): Promise<IQuote[]> {
+    return new Promise((resolve, reject) => {
+      this.getQuotes()
+        .then(quotes => {
+          let filteredQuotes = quotes.filter((quote: IQuote) => {
+            return quote.text.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              quote.category.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              quote.author.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+          });
+          resolve(filteredQuotes);
+        })
+        .catch(reject);
+    })
+  }
+
 }

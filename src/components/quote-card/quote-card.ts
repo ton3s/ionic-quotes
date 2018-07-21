@@ -10,8 +10,11 @@ export class QuoteCardComponent {
   @Input('quote')
   quote: IQuote;
 
-  @Input('isSharing')
-  isSharing: boolean = false;
+  @Input('showOptions')
+  showOptions: boolean = false;
+
+  @Input('isFavorite')
+  isFavorite: boolean = false;
 
   @Output('onClick')
   onClick: EventEmitter<any> = new EventEmitter<any>();
@@ -19,8 +22,8 @@ export class QuoteCardComponent {
   @Output('onShare')
   onShare: EventEmitter<any> = new EventEmitter<any>();
 
-  @Output('onDelete')
-  onDelete: EventEmitter<any> = new EventEmitter<any>();
+  @Output('onFavorite')
+  onFavorite: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
