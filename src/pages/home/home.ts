@@ -14,21 +14,26 @@ export class HomePage {
 
   @ViewChild(Slides) slides: Slides;
   quotes: IQuote[];
-  currentIndex: number = 0;
+  currentIndex: number;
 
   constructor(public navCtrl: NavController,
               public toastCtrl: ToastController,
               public dataProvider: DataProvider,
               public socialProvider: SocialProvider,
               public favoritesProvider: FavoritesProvider) {
+
+    this.favoritesProvider.getQuoteIndex()
+      .then(index => this.currentIndex = index);
   }
 
   ionViewDidLoad() {
-    this.dataProvider.getQuotes().then(quotes => this.quotes = quotes);
+    this.dataProvider.getQuotes()
+      .then(quotes => this.quotes = quotes);
   }
 
   slideChanged() {
     this.currentIndex = this.slides.getActiveIndex();
+    this.favoritesProvider.setQuoteIndex(this.currentIndex);
   }
 
   isFavorite(quote: IQuote) {

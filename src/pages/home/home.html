@@ -16,22 +16,25 @@
       <button ion-fab (click)="socialProvider.setShareStatus(true, fab)">
         <ion-icon name="md-share"></ion-icon>
       </button>
-      <button ion-fab *ngIf="quotes && !isFavorite(quotes[currentIndex])"
+      <button ion-fab *ngIf="quotes && currentIndex && !isFavorite(quotes[currentIndex])"
               (click)="toggleFavorite(quotes[currentIndex], fab)">
         <ion-icon name="heart-outline"></ion-icon>
       </button>
-      <button ion-fab *ngIf="quotes && isFavorite(quotes[currentIndex])"
+      <button ion-fab *ngIf="quotes && currentIndex && isFavorite(quotes[currentIndex])"
               (click)="toggleFavorite(quotes[currentIndex], fab)">
         <ion-icon name="heart"></ion-icon>
       </button>
     </ion-fab-list>
   </ion-fab>
 
-  <ion-slides class="quote-container" effect="slide" (ionSlideDidChange)="slideChanged()">
+  <ion-slides class="quote-container" effect="slide"
+              *ngIf="currentIndex !== undefined"
+              [initialSlide]="currentIndex"
+              (ionSlideDidChange)="slideChanged()">
     <ion-slide *ngFor="let quote of quotes">
       <ion-grid>
         <ion-row justify-content-center align-items-center>
-          <ion-card class="quote-card animated wobble">
+          <ion-card class="quote-card animated fadeIn">
             <ion-card-content>
               <ion-item class="quote-description" text-wrap>
                 "{{ quote.text }}"
@@ -48,7 +51,7 @@
 
   <web-social-share *ngIf="quotes"
                     [show]="socialProvider.isSharing"
-                    [share]="socialProvider.share(quotes[currentIndex])"
+                    [share]="currentIndex && socialProvider.share(quotes[currentIndex])"
                     (closed)="socialProvider.setShareStatus(false)">
   </web-social-share>
 

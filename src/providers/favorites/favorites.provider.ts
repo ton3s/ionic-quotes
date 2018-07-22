@@ -48,12 +48,26 @@ export class FavoritesProvider {
         this.storage.set('favorites', this.favorites).then(resolve).catch(reject);
       }
       resolve();
-    })
-
+    });
   }
 
   isFavorite(quote: IQuote): boolean {
     return this.favorites.map(favorite => favorite.id).indexOf(quote.id) > -1;
+  }
+
+  setQuoteIndex(index: number) {
+    this.storage.set('quoteIndex', index);
+  }
+
+  getQuoteIndex(): Promise<number> {
+    return new Promise((resolve, reject) => {
+      this.storage.get('quoteIndex').then(index => {
+        if (index) {
+          resolve(index);
+        }
+        resolve(0);
+      }).catch(reject);
+    });
   }
 
 }
