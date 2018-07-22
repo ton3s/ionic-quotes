@@ -7,7 +7,7 @@
                  (ionInput)="setFilteredItems()"></ion-searchbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding (ionScrollStart)="closeOptions()">
   <ion-list *ngIf="quotes.length > 0">
     <quote-card *ngFor="let quote of quotes; let i = index;"
                 [quote]="quote"

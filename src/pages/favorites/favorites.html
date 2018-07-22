@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding (ionScrollStart)="closeOptions()">
   <ion-list *ngIf="favorites.length > 0">
     <quote-card *ngFor="let favorite of favorites; let i = index;"
                 [quote]="favorite"

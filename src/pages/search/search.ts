@@ -32,7 +32,7 @@ export class SearchPage {
 
   ionViewDidEnter() {
     this.isSharing = [];
-    this.socialProvider.setShareStatus(false);
+    this.closeOptions();
   }
 
   setFilteredItems() {
@@ -42,8 +42,9 @@ export class SearchPage {
       });
   }
 
-  toggleOptions(favorite: IQuote) {
-    this.isSharing[favorite.id] = !this.isSharing[favorite.id] || false;
+  toggleOptions(quote: IQuote) {
+    this.isSharing[quote.id] = !this.isSharing[quote.id] || false;
+    if (!this.isSharing[quote.id]) this.closeOptions();
   }
 
   isFavorite(quote: IQuote) {
@@ -74,5 +75,9 @@ export class SearchPage {
       cssClass: 'toast-content'
     });
     toast.present();
+  }
+
+  closeOptions() {
+    this.socialProvider.setShareStatus(false);
   }
 }
