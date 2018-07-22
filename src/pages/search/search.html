@@ -10,6 +10,7 @@
 <ion-content padding (ionScrollStart)="closeOptions()">
   <ion-list *ngIf="quotes.length > 0">
     <quote-card *ngFor="let quote of quotes; let i = index;"
+                class="animated fadeInUp"
                 [quote]="quote"
                 [showOptions]="isSharing[quote.id]"
                 [isFavorite]="favoritesProvider.isFavorite(quote)"
