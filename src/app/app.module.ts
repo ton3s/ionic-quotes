@@ -6,6 +6,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {IonicStorageModule} from '@ionic/storage';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 import 'rxjs/add/operator/toPromise';
 import 'web-social-share';
 
@@ -18,6 +19,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {DataProvider} from '../providers/data/data.provider';
 import {FavoritesProvider} from '../providers/favorites/favorites.provider';
 import {SocialProvider} from '../providers/social/social.provider';
+import {UtilityProvider} from '../providers/utility/utility.provider';
 
 // Firebase
 import {AngularFireModule} from 'angularfire2';
@@ -56,10 +58,12 @@ import {firebaseConfig} from './firebase.config';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     FavoritesProvider,
-    SocialProvider
+    SocialProvider,
+    UtilityProvider
   ]
 })
 export class AppModule {
