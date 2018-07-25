@@ -6,7 +6,7 @@
 * Read and share over 50 inspirational quotes.
 * Uses local storage so your data is never shared with the public.
 * Share quotes via facebook, twitter, reddit and email.
-* Save your favorite quotes to your favorites.
+* Save your favorite quotes.
 * Search for quotes based on keyword or author.
 * Deployed securely using [Google firebase hosting](https://firebase.google.com/products/hosting/).
 * Animations by [Animate.css](https://daneden.github.io/animate.css/) library.
